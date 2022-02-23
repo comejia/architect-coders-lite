@@ -1,11 +1,11 @@
-package com.antonioleiva.architectcoderslite.ui
+package com.comejia.architectcoderslite.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.antonioleiva.architectcoderslite.databinding.ActivityMainBinding
+import com.comejia.architectcoderslite.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
             if (state.loggedIn) {
                 startActivity(Intent(this, NextActivity::class.java))
+                viewModel.onNavigateToNextScreen()
                 finish()
             }
         }

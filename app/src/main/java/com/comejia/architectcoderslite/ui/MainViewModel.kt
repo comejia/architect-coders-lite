@@ -1,16 +1,16 @@
-package com.antonioleiva.architectcoderslite.ui
+package com.comejia.architectcoderslite.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.antonioleiva.architectcoderslite.R
-import com.antonioleiva.architectcoderslite.data.success
-import com.antonioleiva.architectcoderslite.domain.TryLoginUseCase
+import com.comejia.architectcoderslite.R
+import com.comejia.architectcoderslite.data.success
+import com.comejia.architectcoderslite.domain.TryLoginUseCase
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val tryLoginUseCase: TryLoginUseCase = TryLoginUseCase()
+    private val tryLoginUseCase: TryLoginUseCase = TryLoginUseCase() // Inversion de control
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData(UiState())
@@ -34,4 +34,9 @@ class MainViewModel(
         val userError: Int? = null,
         val passError: Int? = null
     )
+
+    // Util para mantener el estado cuando se vuelve a una pantalla atras
+    fun onNavigateToNextScreen() {
+        _uiState.value = requireNotNull(_uiState.value).copy(loggedIn = false)
+    }
 }
